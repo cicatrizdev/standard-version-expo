@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.2](https://github.com/expo-community/standard-version-expo/compare/1.1.1...1.1.2) (2025-01-31)
+
+
+### Bug fixes
+
+* android versionCode increment test ([6c0140e](https://github.com/expo-community/standard-version-expo/commit/6c0140eb3e88a6a673a44059feb529d84cacc53c))
+
 ### [1.1.1](https://github.com/expo-community/standard-version-expo/compare/1.1.0...1.1.1) (2025-01-31)
 
 
