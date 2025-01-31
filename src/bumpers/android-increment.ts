@@ -1,6 +1,6 @@
-import { parse, serialize } from '../expo';
-import { androidVersionReader } from '../helpers';
-import { VersionWriter } from '../types';
+import { parse, serialize } from "../expo";
+import { androidVersionReader } from "../helpers";
+import { VersionWriter } from "../types";
 
 /**
  * Read the manifest version from the `expo.android.versionCode` property.
@@ -13,8 +13,9 @@ export const readVersion = androidVersionReader;
  */
 export const writeVersion: VersionWriter = (contents, _version) => {
 	const manifest = parse(contents);
+	const replaced = _version.split(".").join("");
 	manifest.expo.android = manifest.expo.android || {};
-	manifest.expo.android.versionCode = (manifest.expo.android.versionCode || 0) + 1;
+	manifest.expo.android.versionCode = 500000000 + parseInt(replaced, 10);
 
 	return serialize(manifest, contents);
 };

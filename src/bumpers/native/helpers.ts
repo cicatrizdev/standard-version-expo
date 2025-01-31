@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/indent */
 import { VersionReader, VersionWriter } from "../../types";
 import plist, { PlistObject } from "plist";
 
@@ -110,7 +111,12 @@ export const iosAppVersionWriter: VersionWriter = (contents, version) =>
 
 		// trim any prerelease suffixes; this string
 		// must strictly be an x.y.z version.
-		version.split("-")[0]
+		version.includes("-")
+			? version
+					.split("-")[0]
+					.slice(0, version.split("-")[0].length - 1)
+					.concat(version[version.length - 1])
+			: version
 	);
 
 /**
