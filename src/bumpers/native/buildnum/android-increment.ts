@@ -1,5 +1,5 @@
-import { androidBuildnumReader, androidBuildnumWriter } from '../helpers';
-import { VersionWriter } from '../../../types';
+import { androidBuildnumReader, androidBuildnumWriter } from "../helpers";
+import { VersionWriter } from "../../../types";
 
 /**
  * Read the buildnum stored at versionCode in the build.gradle.
@@ -12,13 +12,15 @@ export const readVersion = androidBuildnumReader;
  */
 export const writeVersion: VersionWriter = (contents, _version) => {
 	const buildNumStr = androidBuildnumReader(contents);
-	const buildNumber = buildNumStr != ''
-		? Number(buildNumStr)
-		: 0;
+	const replaced = _version.split(".").join("");
+	const buildNumber = buildNumStr != "" ? Number(buildNumStr) : 0;
 
 	if (Number.isNaN(buildNumber)) {
-		throw new Error('Could not parse number from `versionCode`.');
+		throw new Error("Could not parse number from `versionCode`.");
 	}
 
-	return androidBuildnumWriter(contents, String(buildNumber + 1));
+	return androidBuildnumWriter(
+		contents,
+		String(500000000 + parseInt(replaced, 10))
+	);
 };
