@@ -31,10 +31,12 @@ describe("writeVersion", () => {
 		const newBuildNum = "5";
 		const buildGradle = stub.androidBuildGradle(undefined, oldBuildNum);
 		expect(readVersion(buildGradle)).not.toBe(newBuildNum);
-
+		const versionCode = `5${new Date().getFullYear()}${String(
+			new Date().getMonth() + 1
+		).padStart(2, "0")}${String(new Date().getDate()).padStart(2, "0")}`;
 		const modified = writeVersion(buildGradle, newBuildNum);
 
-		expect(readVersion(modified)).toBe("500000005");
+		expect(readVersion(modified)).toBe(versionCode);
 	});
 
 	it("throws if android build number is missing", () => {

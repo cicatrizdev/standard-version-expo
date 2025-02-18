@@ -11,16 +11,9 @@ export const readVersion = androidBuildnumReader;
  * This ignores the provided version.
  */
 export const writeVersion: VersionWriter = (contents, _version) => {
-	const buildNumStr = androidBuildnumReader(contents);
-	const replaced = _version.split(".").join("");
-	const buildNumber = buildNumStr != "" ? Number(buildNumStr) : 0;
+	const versionCode = `5${new Date().getFullYear()}${String(
+		new Date().getMonth() + 1
+	).padStart(2, "0")}${String(new Date().getDate()).padStart(2, "0")}`;
 
-	if (Number.isNaN(buildNumber)) {
-		throw new Error("Could not parse number from `versionCode`.");
-	}
-
-	return androidBuildnumWriter(
-		contents,
-		String(500000000 + parseInt(replaced, 10))
-	);
+	return androidBuildnumWriter(contents, String(versionCode));
 };
