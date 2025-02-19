@@ -31,12 +31,24 @@ describe("writeVersion", () => {
 		const newBuildNum = "5";
 		const buildGradle = stub.androidBuildGradle(undefined, oldBuildNum);
 		expect(readVersion(buildGradle)).not.toBe(newBuildNum);
-		const versionCode = `5${new Date().getFullYear()}${String(
+		const versionCode = `${new Date().getFullYear()}${String(
 			new Date().getMonth() + 1
-		).padStart(2, "0")}${String(new Date().getDate()).padStart(2, "0")}`;
+		).padStart(2, "0")}${String(new Date().getDate()).padStart(2, "0")}${String(
+			new Date().getHours()
+		).padStart(2, "0")}`;
 		const modified = writeVersion(buildGradle, newBuildNum);
 
 		expect(readVersion(modified)).toBe(versionCode);
+	});
+
+	it("returns build.gradle with modified android build number lower than 2100000000", () => {
+		const oldBuildNum = "4";
+		const newBuildNum = "5";
+		const buildGradle = stub.androidBuildGradle(undefined, oldBuildNum);
+		expect(readVersion(buildGradle)).not.toBe(newBuildNum);
+		const modified = writeVersion(buildGradle, newBuildNum);
+
+		expect(+readVersion(modified)).toBeLessThan(2100000000);
 	});
 
 	it("throws if android build number is missing", () => {

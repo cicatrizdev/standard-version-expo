@@ -13,9 +13,11 @@ export const readVersion = androidVersionReader;
  */
 export const writeVersion: VersionWriter = (contents, _version) => {
 	const manifest = parse(contents);
-	const versionCode = `5${new Date().getFullYear()}${String(
+	const versionCode = `${new Date().getFullYear()}${String(
 		new Date().getMonth() + 1
-	).padStart(2, "0")}${String(new Date().getDate()).padStart(2, "0")}`;
+	).padStart(2, "0")}${String(new Date().getDate()).padStart(2, "0")}${String(
+		new Date().getHours()
+	).padStart(2, "0")}`;
 	manifest.expo.android = manifest.expo.android || {};
 	manifest.expo.android.versionCode = +versionCode;
 
