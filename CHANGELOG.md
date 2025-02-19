@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.4](https://github.com/expo-community/standard-version-expo/compare/1.1.3...1.1.4) (2025-02-19)
+
+
+### Bug fixes
+
+* versionCode ([efb7eb2](https://github.com/expo-community/standard-version-expo/commit/efb7eb257d6c86d81599ffdeda88243ce518dfc9))
+
 ### [1.1.3](https://github.com/expo-community/standard-version-expo/compare/1.1.2...1.1.3) (2025-02-18)
 
 
